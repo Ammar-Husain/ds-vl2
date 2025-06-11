@@ -1,11 +1,26 @@
-# app/main.py
-from app.model import extract_text_from_image
-from app.utils import load_image_from_bytes
+import os
 
-for i in range(1, 9):
-    with open(f"/app/tests/{i}.jpg", "rb") as f:
-        img = load_image_from_bytes(f.read())
-    result = extract_text_from_image(img)
-    print(f"result of {i} is {result}")
-    with open("results.csv", "a") as f:
-        f.write(f"{i}.jpg, {result}")
+from fastapi import FastAPI, File, HTTPException, UploadFile
+
+from model import extract_text
+
+app = FastAPI()
+UPLOAD_FOLDER = "uploaded_images"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+
+@app.post("/ocr/")
+async def ocr(file: UploadFile = File(...)):
+    # Ensure it's an image
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Uploaded file is not an image.")
+
+    # Read the image
+    contents = await file.read()
+    image_path = os.path.join(UPLOAD_FOLDER, file.filename)
+
+    with open(image_path, "wb") as f:
+        f.write(contents)
+
+    result = extract_text(image_path)
+    return result.replace("<｜end▁of▁sentence｜", "")

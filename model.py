@@ -54,13 +54,7 @@ def extract_text(img_path):
     )
 
     answer = tokenizer.decode(outputs[0].cpu().tolist(), skip_special_tokens=False)
-    print(f"{prepare_inputs['sft_format'][0]}", answer)
-    print(f"the raw answer is {answer}")
-    try:
-        with open("/app/results.txt", "a") as f:
-            f.write(f"{answer} ")
-    except Exception:
-        print("can't write")
+    return answer
 
 
 if __name__ == "__main__":

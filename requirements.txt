@@ -1,10 +1,8 @@
 numpy==1.26.4
 torch==2.0.1 --index-url https://download.pytorch.org/whl/cu128
-# transformers
-# timm
-# xformers
 pillow
 fastapi
 uvicorn
+python-multipart
 deepseek-vl2 @ git+https://github.com/deepseek-ai/DeepSeek-VL2.git
 
