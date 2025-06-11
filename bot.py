@@ -1,10 +1,12 @@
+import os
+
 from pyrogram import Client, filters
 
 from model import extract_text
 
-API_ID = "23678585"
-API_HASH = "0ef7b2d89db102e3347e0b73f6d4ab6e"
-BOT_TOKEN = "7570245938:AAFgoNDSOc-OjHj7IuzoEnQIdMdJRnr-ZTs"
+API_ID = os.getenv("API_ID")
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 app = Client("myregbot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
