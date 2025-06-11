@@ -1,8 +1,8 @@
 numpy==1.26.4
 torch==2.0.1 --index-url https://download.pytorch.org/whl/cu128
 pillow
-fastapi
-uvicorn
+fastapi[standard]
+uvicorn[standard]==0.29.0
 python-multipart
 deepseek-vl2 @ git+https://github.com/deepseek-ai/DeepSeek-VL2.git
 

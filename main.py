@@ -9,6 +9,11 @@ UPLOAD_FOLDER = "uploaded_images"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
+@app.get("/")
+def ping():
+    return {"text": "Hello, I am awake"}
+
+
 @app.post("/ocr/")
 async def ocr(file: UploadFile = File(...)):
     # Ensure it's an image
@@ -23,4 +28,4 @@ async def ocr(file: UploadFile = File(...)):
         f.write(contents)
 
     result = extract_text(image_path)
-    return result.replace("<｜end▁of▁sentence｜", "")
+    return {"text": result.replace("<｜end▁of▁sentence｜", "")}
