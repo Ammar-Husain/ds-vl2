@@ -17,7 +17,7 @@ print("Bot created")
 @app.on_message(filters.private & filters.user("@Sd_Ammar"))
 async def ocr(client, message):
     if not message.photo:
-        await message.reply("no photo")
+        await message.reply("no photo", quote=True)
         return
 
     # Read the image
@@ -25,7 +25,7 @@ async def ocr(client, message):
     result = (
         extract_text(image_path).replace("<｜end▁of▁sentence｜>", "").replace(" ", "")
     )
-    await message.reply(result)
+    await message.reply(result, quote=True)
 
 
 app.run()  # Automatically start() and idle()
