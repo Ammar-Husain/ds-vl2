@@ -16,6 +16,9 @@ vl_gpt: DeepseekVLV2ForCausalLM = AutoModelForCausalLM.from_pretrained(
 vl_gpt = vl_gpt.to(torch.bfloat16).cuda().eval()
 
 
+PROMPT = "You are a visual recognition model. Analyze this image and extract the alphanumeric charecters sequence within it. The sequence may consist of capital letters (A–Z), small letters (a-z) and digits (0–9), written in varying handwriting or machine styles. Ignore background noise, lines, stamps, or artifacts, distinguish between Capital and small letters and between letters and numbers, Return only the clean, uninterrupted alphanumeric sequence, Do not include spaces or special symbols."
+
+
 ## single image conversation example
 ## Please note that <|ref|> and <|/ref|> are designed specifically for the object localization feature. These special tokens are not required for normal conversations.
 ## If you would like to experience the grounded captioning functionality (responses that include both object localization and reasoning), you need to add the special token <|grounding|> at the beginning of the prompt. Examples could be found in Figure 9 of our paper.
@@ -23,7 +26,7 @@ def extract_text(img_path):
     conversation = [
         {
             "role": "<|User|>",
-            "content": "<image> extract the alphanumeric charecters from this image,your answer must conatin the alphanumeric characters only from lift to right without spaces between them without anything before or after them",
+            "content": f"<image> {PROMPT}",
             "images": [img_path],
         },
         {"role": "<|Assistant|>", "content": ""},
