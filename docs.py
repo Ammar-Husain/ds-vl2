@@ -55,8 +55,12 @@ def extract_text(img_path):
 
     answer = tokenizer.decode(outputs[0].cpu().tolist(), skip_special_tokens=False)
     print(f"{prepare_inputs['sft_format'][0]}", answer)
-    with open("/result.txt", "a") as f:
-        f.write(f"the result is {answer}")
+    print(f"the raw answer is {answer}")
+    try:
+        with open("/app/results.txt", "a") as f:
+            f.write(f"the result of {img_path} is {answer}\n")
+    except PermissionError:
+        print("no permission for writing")
 
 
 if __name__ == "__main__":
