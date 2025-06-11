@@ -1,3 +1,4 @@
+print("Execution started")
 import os
 
 from pyrogram import Client, filters
@@ -11,7 +12,7 @@ API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 app = Client("myregbot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
-print("Bot created")
+print("Bot connected")
 
 
 @app.on_message(filters.private & filters.user("@Sd_Ammar"))
