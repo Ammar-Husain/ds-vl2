@@ -13,9 +13,6 @@ MODEL_NAME = "deepseek-ai/deepseek-vl2-tiny"
 processor = DeepseekVLV2Processor.from_pretrained(MODEL_NAME)
 model = DeepseekVLV2ForCausalLM.from_pretrained(MODEL_NAME, trust_remote_code=True)
 
-# Resize token embeddings to include newly added special tokens
-model.resize_token_embeddings(len(processor.tokenizer))
-
 # Move model to device and set eval mode
 model = model.to(device).eval()
 
