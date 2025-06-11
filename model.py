@@ -4,7 +4,7 @@ from deepseek_vl2.utils.io import load_pil_images
 from transformers import AutoModelForCausalLM
 
 # specify the path to the model
-model_path = "deepseek-ai/deepseek-vl2-tiny"
+model_path = "deepseek-ai/deepseek-vl2-small"
 vl_chat_processor: DeepseekVLV2Processor = DeepseekVLV2Processor.from_pretrained(
     model_path
 )
@@ -16,7 +16,7 @@ vl_gpt: DeepseekVLV2ForCausalLM = AutoModelForCausalLM.from_pretrained(
 vl_gpt = vl_gpt.to(torch.bfloat16).cuda().eval()
 
 
-PROMPT = "You are a visual recognition model. Analyze this image and extract the alphanumeric charecters sequence within it. The sequence may consist of capital letters (A–Z), small letters (a-z) and digits (0–9), written in varying handwriting or machine styles. Ignore background noise, lines, stamps, or artifacts, distinguish between Capital and small letters and between letters and numbers, Return only the clean, uninterrupted alphanumeric sequence, Do not include spaces or special symbols."
+PROMPT = "You are a visual recognition model. Analyze this image and extract the alphanumeric charecters sequence within it. The sequence may consist of capital letters (A–Z), small letters (a-z) and digits (0–9), written in varying handwriting or machine styles. Ignore background noise, lines, stamps, artifacts but take care they may be litters, distinguish between Capital and small letters and between letters and numbers, Return only the clean, uninterrupted alphanumeric sequence, Do not include spaces or special symbols."
 
 
 ## single image conversation example
