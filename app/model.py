@@ -38,11 +38,11 @@ def extract_text_from_image(image):
     # Generate model output
     with torch.no_grad():
         outputs = model.generate(
-            inputs_embeds=inputs.embeds,
+            input_ids=inputs.input_ids,
             attention_mask=inputs.attention_mask,
+            pixel_values=inputs.pixel_values,
             max_new_tokens=200,
             do_sample=False,
         )
-
     # Decode the output, skipping special tokens
     return processor.tokenizer.decode(outputs[0], skip_special_tokens=True)
