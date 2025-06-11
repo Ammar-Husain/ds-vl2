@@ -12,6 +12,7 @@ app = Client("myregbot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 @app.on_message(filters.private & filters.user("@Sd_Ammar"))
 async def ocr(client, message):
     if not message.photo:
+        await message.reply("no photo")
         return
 
     # Read the image
