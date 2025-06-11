@@ -16,7 +16,21 @@ vl_gpt: DeepseekVLV2ForCausalLM = AutoModelForCausalLM.from_pretrained(
 vl_gpt = vl_gpt.to(torch.bfloat16).cuda().eval()
 
 
-PROMPT = "You are a visual recognition model. Analyze this image and extract the alphanumeric charecters sequence within it. The sequence may consist of capital letters (A–Z), small letters (a-z) and digits (0–9), written in varying handwriting or machine styles. Trace any line as it may be part of a letter or number, charecters can have varying sizes, distinguish between Capital and small letters and between letters and numbers, one charecter represent just one charecter, Return only the clean, uninterrupted alphanumeric sequence, Do not include spaces or special symbols."
+PROMPT = """
+You are an advanced visual recognition model. Your task is to analyze the image and extract the alphanumeric character sequence it contains. The sequence may include:
+Uppercase letters (A–Z)
+Lowercase letters (a–z)
+Digits (0–9)
+Characters may appear in various handwriting styles or machine-printed fonts, and they may vary in size and clarity. Carefully trace all visible lines — every mark may be part of a character.
+Important Instructions:
+Distinguish clearly between similar characters (e.g., ‘O’ vs ‘0’, ‘I’ vs ‘1’, ‘l’ vs ‘1’, etc.).
+Prioritize letters over digits when uncertain — assume a character is a letter unless there's strong visual evidence it is a number.
+Each character must be counted only once. No character should be interpreted as two.
+Do not include any spaces, punctuation, or special characters in the output — return only the continuous alphanumeric sequence.
+If the image contains a mathematical problem, extract the complete expression, solve it, and return only the final answer (not the expression itself).
+Output format:
+Return only the cleaned and uninterrupted alphanumeric sequence or, if it's a math problem, return the numeric result
+"""
 
 
 ## single image conversation example
