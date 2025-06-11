@@ -58,9 +58,9 @@ def extract_text(img_path):
     print(f"the raw answer is {answer}")
     try:
         with open("/app/results.txt", "a") as f:
-            f.write(f"the result of {img_path} is {answer}\n")
-    except PermissionError:
-        print("no permission for writing")
+            f.write(f"{answer} ")
+    except Exception:
+        print("can't write")
 
 
 if __name__ == "__main__":
