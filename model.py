@@ -4,7 +4,7 @@ from deepseek_vl2.utils.io import load_pil_images
 from transformers import AutoModelForCausalLM
 
 # specify the path to the model
-model_path = "deepseek-ai/deepseek-vl2-small"
+model_path = "deepseek-ai/deepseek-vl2-tiny"
 vl_chat_processor: DeepseekVLV2Processor = DeepseekVLV2Processor.from_pretrained(
     model_path
 )

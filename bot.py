@@ -25,6 +25,7 @@ async def ocr(client, message):
     result = (
         extract_text(image_path).replace("<｜end▁of▁sentence｜>", "").replace(" ", "")
     )
+    print(result)
     await message.reply(result, quote=True)
 
 
