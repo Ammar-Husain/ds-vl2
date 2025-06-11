@@ -19,7 +19,7 @@ async def ocr(client, message):
     image_path = await client.download_media(message.photo.file_id)
     await message.reply(image_path)
     result = extract_text(image_path)
-    return {"text": result.replace("<｜end▁of▁sentence｜", "")}
+    await message.reply(result.replace("<｜end▁of▁sentence｜", ""))
 
 
 app.run()  # Automatically start() and idle()
