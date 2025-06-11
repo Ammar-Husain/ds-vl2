@@ -61,4 +61,4 @@ def extract_text(img_path):
 
 if __name__ == "__main__":
     for i in range(1, 9):
-        extract_text(f"/app/tests/{i}")
+        extract_text(f"/app/tests/{i}.jpg")
