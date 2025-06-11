@@ -28,7 +28,7 @@ def extract_text_from_image(image):
         str: Extracted alphanumeric text.
     """
     prompt = (
-        "<ImageHere> Extract the alphanumeric characters of this image, "
+        "<image> Extract the alphanumeric characters of this image, "
         "respond with the characters only without spaces between them."
     )
 
