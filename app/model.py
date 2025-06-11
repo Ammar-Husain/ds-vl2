@@ -29,7 +29,7 @@ def extract_text_from_image(image):
     """
     prompt = (
         "<image> Extract the alphanumeric characters of this image, "
-        "respond with the characters only without spaces between them."
+        "respond with the characters only ordered from left to right without spaces between them."
     )
 
     # Prepare inputs for the model
