@@ -1,8 +1,8 @@
 numpy==1.26.4
 torch==2.0.1 --index-url https://download.pytorch.org/whl/cu128
-transformers
-timm
-xformers
+# transformers
+# timm
+# xformers
 pillow
 fastapi
 uvicorn
